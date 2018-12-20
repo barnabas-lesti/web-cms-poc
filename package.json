@@ -2,8 +2,8 @@
   "name": "eodrin-cms-web",
   "version": "1.0.0",
   "scripts": {
-    "client": "webpack -w",
-    "server": "nodemon server.js"
+    "watch": "webpack --mode=development --watch",
+    "server": "nodemon --watch ./build ./build/server.js"
   },
   "babel": {
     "presets": [

@@ -1,8 +1,14 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
-import App from '../shared/App';
+import { BrowserRouter } from 'react-router-dom';
+
+import App from '../shared/components/App';
 
 hydrate(
-  <App data="Mikenzi" />,
+  (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  ),
   document.getElementById('app')
 );

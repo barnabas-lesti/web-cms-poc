@@ -1,36 +1,51 @@
 import express from 'express';
 import cors from 'cors';
-import { renderToString } from 'react-dom/server';
-import App from '../shared/App';
 import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { matchPath, StaticRouter } from 'react-router-dom';
+import serialize from 'serialize-javascript';
+
+import routes from '../shared/routes';
+
+import App from '../shared/components/App';
 
 const app = express();
 
 app.use(cors());
 
-// We're going to serve up the public
-// folder since that's where our
-// client bundle.js file will end up.
 app.use(express.static('public'));
+app.use(express.static('build/public'));
 
-app.get('*', (req, res) => {
-  const markup = renderToString(
-    <App data="Tyler" />
-  );
+app.get('*', (req, res, next) => {
+  const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
+  const promise = activeRoute.fetchInitialData ? activeRoute.fetchInitialData(req.path) : Promise.resolve();
 
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>SSR with RR</title>
-        <script src="/bundle.js" defer></script>
-      </head>
+  promise
+    .then((data) => {
+      const context = { data };
 
-      <body>
-        <div id="app">${markup}</div>
-      </body>
-    </html>
-  `);
+      const markup = renderToString(
+        <StaticRouter location={req.url} context={context}>
+          <App data={data}/>
+        </StaticRouter>
+      );
+
+      res.send(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>SSR with RR</title>
+            <script src="/client.js" defer></script>
+            <script>window.__INITIAL_DATA__ = ${serialize(data)}</script>
+          </head>
+
+          <body>
+            <div id="app">${markup}</div>
+          </body>
+        </html>
+      `);
+    })
+    .catch(next);
 });
 
 app.listen(3000, () => {

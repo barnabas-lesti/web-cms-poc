@@ -5,18 +5,21 @@ var nodeExternals = require('webpack-node-externals');
 var browserConfig = {
   entry: './src/browser/index.js',
   output: {
-    path: path.resolve(__dirname, 'public'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'build/public'),
+    filename: 'client.js',
     publicPath: '/',
   },
   module: {
     rules: [
-      { test: /\.(js)$/, use: 'babel-loader' },
+      {
+        test: /\.(js)$/,
+        use: 'babel-loader',
+      },
     ],
   },
   plugins: [
     new webpack.DefinePlugin({
-      __isBrowser__: 'true',
+      __isBrowser__: true,
     }),
   ],
 };
@@ -26,7 +29,7 @@ var serverConfig = {
   target: 'node',
   externals: [nodeExternals()],
   output: {
-    path: __dirname,
+    path: path.resolve(__dirname, 'build'),
     filename: 'server.js',
     publicPath: '/',
   },
@@ -40,7 +43,7 @@ var serverConfig = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      __isBrowser__: 'false',
+      __isBrowser__: false,
     }),
   ],
 };
