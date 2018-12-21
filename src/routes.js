@@ -1,8 +1,8 @@
 import { fetchPost } from './api';
 
-import Home from './components/pages/Home';
-import Posts from './components/pages/Posts';
-import Post from './components/pages/Post';
+import Home from './client/components/pages/Home';
+import Posts from './client/components/pages/Posts';
+import Post from './client/components/pages/Post';
 
 const routes =  [
   {

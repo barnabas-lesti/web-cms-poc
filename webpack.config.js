@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var nodeExternals = require('webpack-node-externals');
 
 var browserConfig = {
-  entry: './src/browser/index.js',
+  entry: [ './src/client/index.js', './src/client/main.scss' ],
   output: {
     path: path.resolve(__dirname, 'build/public'),
     filename: 'client.js',
@@ -12,14 +12,40 @@ var browserConfig = {
   module: {
     rules: [
       {
+        test: /\.(scss)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'client.css',
+            },
+          },
+          {
+            loader: 'extract-loader',
+          },
+          {
+            loader: 'css-loader?-url',
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
+      },
+      {
         test: /\.(js)$/,
-        use: 'babel-loader',
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
       },
     ],
   },
   plugins: [
     new webpack.DefinePlugin({
-      __isBrowser__: true,
+      eodrinGlobals: {
+        IS_BROWSER: true,
+      },
     }),
   ],
 };
@@ -43,9 +69,11 @@ var serverConfig = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      __isBrowser__: false,
+      eodrinGlobals: {
+        IS_BROWSER: false,
+      },
     }),
   ],
 };
 
-module.exports = [browserConfig, serverConfig];
+module.exports = [ browserConfig, serverConfig ];

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { fetchPost } from '../../api';
+import { fetchPost } from '../../../api';
 
 class Post extends Component {
   constructor(props) {
     super(props);
 
-    const post = __isBrowser__ ? window.__INITIAL_DATA__ : props.staticContext;
+    const post = eodrinGlobals.IS_BROWSER ? window.eodrinApp.initialData : props.staticContext;
 
     this.state = {
       loading: false,
@@ -46,7 +46,7 @@ class Post extends Component {
     const { post, loading } = this.state;
 
     return (
-      <div>
+      <div className="Post">
         {loading &&
           <p>Loading</p>
         }

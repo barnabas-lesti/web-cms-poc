@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import routes from '../routes';
+import Header from './client/components/layout/Header';
+import Footer from './client/components/layout/Footer';
 
-import Header from './layout/Header';
-import Footer from './layout/Footer';
+import routes from './routes';
 
 class App extends Component {
   render() {
@@ -12,13 +12,13 @@ class App extends Component {
       <div>
         <Header />
         <Switch>
-          {routes.map(({ path, exact, component: C, ...rest }) => (
+          {routes.map(({ path, exact, component: Component, ...rest }) => (
             <Route
               key={path}
               path={path}
               exact={exact}
               render={(props) => (
-                <C {...props} {...rest} />
+                <Component {...props} {...rest} />
               )}
             />
           ))}

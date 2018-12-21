@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default function Posts () {
+const Posts = () => {
   return (
     <div>
       Posts
     </div>
   );
-}
+};
+
+export default Posts;

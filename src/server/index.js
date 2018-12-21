@@ -4,10 +4,10 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { matchPath, StaticRouter } from 'react-router-dom';
 
-import template from './template';
-import routes from '../shared/routes';
+import routes from '../routes';
+import App from '../App';
 
-import App from '../shared/components/App';
+import template from './template';
 
 const app = express();
 
@@ -19,13 +19,13 @@ app.use('/public', [
 ]);
 
 // Favicon fcked up routing a bit, so for now I'll leave this here.
-app.use((req, res, next) => {
-  if (req.originalUrl === '/favicon.ico') {
-    res.status(204).send();
-  } else {
-    next();
-  }
-});
+// app.use((req, res, next) => {
+//   if (req.originalUrl === '/favicon.ico') {
+//     res.status(204).send();
+//   } else {
+//     next();
+//   }
+// });
 
 app.get('*', (req, res, next) => {
   const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};

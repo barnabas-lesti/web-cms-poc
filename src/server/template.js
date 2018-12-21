@@ -1,13 +1,16 @@
 import serializeJavascript from 'serialize-javascript';
 
-export default function template (content, context) {
+const template = (content, context) => {
   return `
     <!DOCTYPE html>
     <html>
       <head>
         <title>SSR with RR</title>
+        <link rel="stylesheet" type="text/css" href="/public/client.css">
         <script src="/public/client.js" defer></script>
-        <script>window.__INITIAL_DATA__ = ${serializeJavascript(context)}</script>
+        <script>
+          window.eodrinApp = window.eodrinApp || {};
+          window.eodrinApp.initialData = ${serializeJavascript(context)}</script>
       </head>
 
       <body>
@@ -15,4 +18,6 @@ export default function template (content, context) {
       </body>
     </html>
   `;
-}
+};
+
+export default template;
