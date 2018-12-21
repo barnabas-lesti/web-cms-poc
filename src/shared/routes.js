@@ -1,7 +1,8 @@
-import { fetchPopularRepos } from './api';
+import { fetchPost } from './api';
 
-import Home from './components/Home';
-import Grid from './components/Grid';
+import Home from './components/pages/Home';
+import Posts from './components/pages/Posts';
+import Post from './components/pages/Post';
 
 const routes =  [
   {
@@ -10,11 +11,17 @@ const routes =  [
     component: Home,
   },
   {
-    path: '/popular/:id',
-    component: Grid,
-    fetchInitialData: (path = '') => fetchPopularRepos(
-      path.split('/').pop(),
-    ),
+    path: '/:postGroup',
+    exact: true,
+    component: Posts,
+  },
+  {
+    path: '/:postGroup/:postId',
+    exact: true,
+    component: Post,
+    fetchInitialData ({ postGroup, postId }) {
+      return fetchPost(postGroup, postId);
+    },
   },
 ];
 

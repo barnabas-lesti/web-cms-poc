@@ -3,15 +3,14 @@ import { Route, Switch } from 'react-router-dom';
 
 import routes from '../routes';
 
-import Navbar from './Navbar';
-import NoMatch from './NoMatch';
+import Header from './layout/Header';
+import Footer from './layout/Footer';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
-
+        <Header />
         <Switch>
           {routes.map(({ path, exact, component: C, ...rest }) => (
             <Route
@@ -23,9 +22,8 @@ class App extends Component {
               )}
             />
           ))}
-
-          <Route render={(props) => <NoMatch {...props} />} />
         </Switch>
+        <Footer />
       </div>
     );
   }

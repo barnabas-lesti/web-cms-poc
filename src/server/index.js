@@ -3,8 +3,8 @@ import cors from 'cors';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { matchPath, StaticRouter } from 'react-router-dom';
-import serialize from 'serialize-javascript';
 
+import template from './template';
 import routes from '../shared/routes';
 
 import App from '../shared/components/App';
@@ -13,40 +13,41 @@ const app = express();
 
 app.use(cors());
 
-app.use(express.static('public'));
-app.use(express.static('build/public'));
+app.use('/public', [
+  express.static('public'),
+  express.static('build/public'),
+]);
+
+// Favicon fcked up routing a bit, so for now I'll leave this here.
+app.use((req, res, next) => {
+  if (req.originalUrl === '/favicon.ico') {
+    res.status(204).send();
+  } else {
+    next();
+  }
+});
 
 app.get('*', (req, res, next) => {
   const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
-  const promise = activeRoute.fetchInitialData ? activeRoute.fetchInitialData(req.path) : Promise.resolve();
-
+  const promise = activeRoute.fetchInitialData ? activeRoute.fetchInitialData({ postGroup: 'asdf', postId: 'adf' }) : Promise.resolve();
   promise
-    .then((data) => {
-      const context = { data };
-
+    .then(data => {
       const markup = renderToString(
-        <StaticRouter location={req.url} context={context}>
-          <App data={data}/>
+        <StaticRouter location={req.url} context={data}>
+          <App />
         </StaticRouter>
       );
-
-      res.send(`
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>SSR with RR</title>
-            <script src="/client.js" defer></script>
-            <script>window.__INITIAL_DATA__ = ${serialize(data)}</script>
-          </head>
-
-          <body>
-            <div id="app">${markup}</div>
-          </body>
-        </html>
-      `);
+      res.send(template(
+        markup,
+        data,
+      ));
     })
     .catch(next);
 });
+
+// for (const { path } of routes) {
+
+// }
 
 app.listen(3000, () => {
   console.log('Server is listening on port: 3000');
