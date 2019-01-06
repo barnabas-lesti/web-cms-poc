@@ -1,10 +1,10 @@
 import { h, Component } from 'preact';
 
-export default class Home extends Component {
+export default class About extends Component {
 	render () {
 		return (
-			<div class="Home">
-				Home
+			<div class="About">
+				About
 			</div>
 		);
 	}

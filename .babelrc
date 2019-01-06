@@ -1,0 +1,9 @@
+{
+	"plugins": [
+		[ "@babel/transform-react-jsx", { "pragma": "h" } ]
+	],
+	"presets": [
+		"@babel/env",
+		"@babel/react",
+	]
+}

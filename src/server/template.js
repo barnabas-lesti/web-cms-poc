@@ -1,23 +1,17 @@
-import serializeJavascript from 'serialize-javascript';
-
-const template = (content, context) => {
-  return `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>SSR with RR</title>
-        <link rel="stylesheet" type="text/css" href="/public/client.css">
-        <script src="/public/client.js" defer></script>
-        <script>
-          window.eodrinApp = window.eodrinApp || {};
-          window.eodrinApp.initialData = ${serializeJavascript(context)}</script>
-      </head>
-
-      <body>
-        <div id="app">${content}</div>
-      </body>
-    </html>
-  `;
-};
+const template = (content, initialState = {}) => `
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<title> SSR Preact App</title>
+		</head>
+		<body>
+			<div id="app">${content}</div>
+			<script>window.__INITIAL_STATE__=${JSON.stringify(initialState).replace(/<|>/g, '')}</script>
+			<script src="/assets/bundle.js"></script>
+		</body>
+	</html>
+`
 
 export default template;
