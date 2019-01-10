@@ -1,33 +1,58 @@
-import { h, Component } from 'preact';
-import { Link } from 'preact-router';
+import React, { Component } from 'react';
+import marked from 'marked';
 
-import Footer from './components/common/Footer';
-import Header from './components/common/Header';
-import Router from './Router';
+import templates from './templates';
+
+import Footer from './partials/Footer';
+import Header from './partials/Header';
 
 export default class App extends Component {
-	constructor () {
-		super();
+	render() {
+		const { initialData } = this.props;
+		const {
+			page,
+			settings,
+		} = initialData;
 
-		// this.state = ...
+		const {
+			copyrightText,
+			menuItems,
+			baseHref,
+			siteLogoUrl,
+			social,
+		} = settings;
 
-		// this.method = this.method.bind(this);
-	}
+		let Template;
+		let templateProps;
+		if (page !== null) {
+			Template = templates[page.pageTemplate];
+			templateProps = {
+				content: marked(page.content || ''),
+				subPages: page.subPages,
+			};
+		} else {
+			Template = templates['NotFoundTemplate'];
+			console.log (Template);
+			templateProps = {};
+		}
 
-	// method () {
-	// 	this.setState({
-	// 		count: --this.state.count,
-	// 	});
-	// }
-
-	render ({ url }) {
 		return (
-			<div class="App">
-				<Header />
-				<div class="App_content">
-					<Router url={url} />
-				</div>
-				<Footer />
+			<div className="App">
+				<Header
+					menuItems={menuItems}
+					siteLogoUrl={siteLogoUrl}
+					baseHref={baseHref}
+				/>
+				<Template
+					baseHref={baseHref}
+					{...templateProps}
+				/>
+				<Footer
+					copyrightText={copyrightText}
+					menuItems={menuItems}
+					social={social}
+					baseHref={baseHref}
+				/>
 			</div>
 		);
 	}

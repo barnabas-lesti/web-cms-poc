@@ -1,12 +1,9 @@
-import { h, render } from 'preact';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 import App from './App';
 
-import './styles/main.scss';
-
-const app = document.getElementById('app');
-
-render(
-	<App />,
-	app,
-	app.lastChild,
+ReactDOM.hydrate(
+	<App initialData={window.__INITIAL_DATA__} />,
+	document.getElementById('app'),
 );
