@@ -9,9 +9,25 @@ class ContentService extends Service {
 		super();
 	}
 
+	/**
+	 * Fetches static page data from the API.
+	 *
+	 * @param {String} pageId Static page ID
+	 * @returns {Promise<Page>} Page promise object
+	 */
 	async getStaticPageData (pageId) {
 		const pageData = await httpService.get(`/staticPages/${ pageId }`);
 		return pageData;
+	}
+
+	/**
+	 * Fetches global settings data from the API.
+	 *
+	 * @returns {Promise<Settings>} Settings promise object
+	 */
+	async getSettings () {
+		const settings = await httpService.get('/settings');
+		return settings;
 	}
 }
 

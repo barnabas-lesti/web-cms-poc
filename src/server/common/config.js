@@ -17,7 +17,7 @@ const config = {
 		PORT: configLib.get('common.PORT'),
 	},
 	api: {
-		API_URL: configLib.get('api.API_URL'),
+		API_DOMAIN: configLib.get('api.API_DOMAIN'),
 	}
 };
 

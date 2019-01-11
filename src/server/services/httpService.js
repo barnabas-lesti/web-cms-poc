@@ -1,4 +1,5 @@
 import axios from 'axios';
+import urlJoin from 'url-join';
 
 import config from '../common/config';
 import Service from './Service';
@@ -11,9 +12,7 @@ class HttpService extends Service {
 	constructor () {
 		super();
 
-		this._handler = axios.create({
-			baseURL: config.api.API_URL,
-		});
+		this._handler = axios.create({ baseURL: urlJoin(config.api.API_DOMAIN, 'api') });
 	}
 
 	/**
