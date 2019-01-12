@@ -1,7 +1,9 @@
-import all from './all';
+import staticPages from './staticPages';
+import posts from './posts';
 
 const viewRoutes = [
-	all,
+	posts,
+	staticPages,
 ];
 
 export default viewRoutes;

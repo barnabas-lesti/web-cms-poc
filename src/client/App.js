@@ -32,7 +32,6 @@ export default class App extends Component {
 			};
 		} else {
 			Template = templates['NotFoundTemplate'];
-			console.log (Template);
 			templateProps = {};
 		}
 

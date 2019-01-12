@@ -5,6 +5,7 @@ import config from './common/config';
 import logger from './common/logger';
 import assetResolver from './middlewares/assetResolver';
 import autoFaviconKiller from './middlewares/autoFaviconKiller';
+import commonDataDecorator from './middlewares/commonDataDecorator';
 import routes from './routes';
 
 class App {
@@ -21,6 +22,8 @@ class App {
 			express.static('build/assets'),
 			assetResolver(),
 		]);
+
+		this._app.use(commonDataDecorator());
 
 		for (const route of routes) {
 			this._app.use(route(express.Router()));

@@ -21,8 +21,8 @@ class HttpService extends Service {
 	 * @param {String} url URL to fetch data from
 	 * @returns {Promise<Object>} Data promise
 	 */
-	async get (url) {
-		const { data } = await this._handler.get(url);
+	async get (url, params) {
+		const { data } = await this._handler.get(url, { params });
 		return data;
 	}
 }
