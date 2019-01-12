@@ -6,6 +6,7 @@ import logger from './common/logger';
 import assetResolver from './middlewares/assetResolver';
 import autoFaviconKiller from './middlewares/autoFaviconKiller';
 import commonDataDecorator from './middlewares/commonDataDecorator';
+import redirections from './middlewares/redirections';
 import routes from './routes';
 
 class App {
@@ -24,6 +25,7 @@ class App {
 		]);
 
 		this._app.use(commonDataDecorator());
+		this._app.use(redirections());
 
 		for (const route of routes) {
 			this._app.use(route(express.Router()));
