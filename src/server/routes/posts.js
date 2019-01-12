@@ -14,7 +14,7 @@ export default function posts (router) {
 				...pageData,
 				subPagesData,
 			} : null;
-			res.send(viewTemplate(page, settings));
+			res.status(page !== null ? 200 : 404).send(viewTemplate(page, settings));
 			return;
 		});
 

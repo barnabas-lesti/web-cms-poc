@@ -5,6 +5,7 @@
 	background-color: $_bgColor;
 	box-shadow: $_boxShadow;
 	text-align: center;
+	flex-shrink: 0;
 
 	&_links {
 		list-style-type: none;

@@ -37,15 +37,17 @@ export default class App extends Component {
 
 		return (
 			<div className="App">
-				<Header
-					menuItems={menuItems}
-					siteLogoUrl={siteLogoUrl}
-					baseHref={baseHref}
-				/>
-				<Template
-					baseHref={baseHref}
-					{...templateProps}
-				/>
+				<div className="App_content">
+					<Header
+						menuItems={menuItems}
+						siteLogoUrl={siteLogoUrl}
+						baseHref={baseHref}
+					/>
+					<Template
+						baseHref={baseHref}
+						{...templateProps}
+					/>
+				</div>
 				<Footer
 					copyrightText={copyrightText}
 					menuItems={menuItems}
