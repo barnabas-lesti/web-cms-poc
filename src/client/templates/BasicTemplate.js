@@ -11,7 +11,7 @@ export default class BasicTemplate extends Component {
 		} = this.props;
 		return (
 			<div className="BasicTemplate page container">
-				<div className="BasicTemplate_content" dangerouslySetInnerHTML={{ __html: content }}></div>
+				<div className="BasicTemplate_content cmsContent" dangerouslySetInnerHTML={{ __html: content }}></div>
 				{subPages &&
 					<Listing items={subPages} baseHref={baseHref} />
 				}

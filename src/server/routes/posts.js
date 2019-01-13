@@ -5,6 +5,7 @@ export default function posts (router) {
 	router.route('/posts*')
 		.get(async (req, res) => {
 			const { path } = req;
+			console.log(path);
 			const { settings } = res.locals.common;
 			const [ pageData, subPagesData ] = await Promise.all([
 				contentService.getPostData(path),
@@ -12,8 +13,10 @@ export default function posts (router) {
 			]);
 			const page = pageData !== null ? {
 				...pageData,
-				subPagesData,
+				subPages: subPagesData,
 			} : null;
+
+			console.log(page);
 			res.status(page !== null ? 200 : 404).send(viewTemplate(page, settings));
 			return;
 		});
