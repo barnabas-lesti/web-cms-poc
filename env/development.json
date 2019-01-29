@@ -1,8 +1,0 @@
-{
-	"common": {
-		"ENV": "development"
-	},
-	"api": {
-		"API_DOMAIN": "http://localhost:8080"
-	}
-}

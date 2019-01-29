@@ -1,6 +1,0 @@
-{
-	"common": {
-		"ENV": "default",
-		"PORT": 3000
-	}
-}
