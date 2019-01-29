@@ -8,6 +8,8 @@ process.env.NODE_CONFIG_DIR = envDirPath;
 
 const configLib = require('config');
 
+// console.log(configLib);
+
 /**
  * Application configuration object.
  */
