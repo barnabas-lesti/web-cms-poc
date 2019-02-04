@@ -1,0 +1,14 @@
+.Listing {
+	&_content {
+		margin-bottom: 1rem;
+		overflow: hidden;
+	}
+
+	&_item {
+		margin-bottom: 1rem;
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+}

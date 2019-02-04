@@ -1,0 +1,31 @@
+@import './variables.scss';
+
+%container {
+	margin: 0 auto;
+	max-width: $layout_contentMaxWidth;
+	padding: 0 1rem;
+}
+
+%clearfix {
+	&::after {
+		clear: both;
+		content: '';
+		display: table;
+	}
+}
+
+%page {
+	padding-bottom: 2rem;
+	padding-top: 2rem;
+	text-align: center;
+
+	@media screen and (min-width: $layout_mdMin) {
+		text-align: left;
+	}
+}
+
+%cmsContent {
+	img {
+		max-width: 100%;
+	}
+}

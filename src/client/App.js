@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import marked from 'marked';
 
 import templates from './templates';
+import NotFoundTemplate from './templates/NotFoundTemplate';
 
-import Footer from './partials/Footer';
-import Header from './partials/Header';
+import Footer from './modules/Footer';
+import Header from './modules/Header';
 
 export default class App extends Component {
 	render() {
@@ -14,10 +15,11 @@ export default class App extends Component {
 			settings,
 		} = initialData;
 
+		console.log(page);
+
 		const {
 			copyrightText,
 			menuItems,
-			baseHref,
 			siteLogoUrl,
 			social,
 		} = settings;
@@ -25,13 +27,13 @@ export default class App extends Component {
 		let Template;
 		let templateProps;
 		if (page !== null) {
-			Template = templates[page.pageTemplate];
+			Template = templates.filter(Template => Template.templateName === page.pageTemplate)[0];
 			templateProps = {
 				content: marked(page.content || ''),
 				subPages: page.subPages,
 			};
 		} else {
-			Template = templates['NotFoundTemplate'];
+			Template = NotFoundTemplate;
 			templateProps = {};
 		}
 
@@ -41,10 +43,8 @@ export default class App extends Component {
 					<Header
 						menuItems={menuItems}
 						siteLogoUrl={siteLogoUrl}
-						baseHref={baseHref}
 					/>
 					<Template
-						baseHref={baseHref}
 						{...templateProps}
 					/>
 				</div>
@@ -52,7 +52,6 @@ export default class App extends Component {
 					copyrightText={copyrightText}
 					menuItems={menuItems}
 					social={social}
-					baseHref={baseHref}
 				/>
 			</div>
 		);

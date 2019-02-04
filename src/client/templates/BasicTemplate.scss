@@ -1,5 +1,10 @@
 .BasicTemplate {
+	@extend %page;
+	@extend %container;
+
 	&_content {
+		@extend %cmsContent;
+
 		margin-bottom: 1rem;
 		overflow: hidden;
 	}

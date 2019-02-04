@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import hljs from 'highlightjs/highlight.pack';
 
-import Listing from '../partials/Listing';
-
+import Listing from '../modules/Listing';
 
 export default class BasicTemplate extends Component {
+	static templateName = 'BasicTemplate';
 
 	componentDidMount () {
 		hljs.initHighlightingOnLoad();
@@ -13,14 +13,13 @@ export default class BasicTemplate extends Component {
 	render() {
 		const {
 			content,
-			baseHref,
 			subPages,
 		} = this.props;
 		return (
-			<div className="BasicTemplate page container">
-				<div className="BasicTemplate_content cmsContent" dangerouslySetInnerHTML={{ __html: content }}></div>
+			<div className="BasicTemplate">
+				<div className="BasicTemplate_content" dangerouslySetInnerHTML={{ __html: content }}></div>
 				{subPages &&
-					<Listing items={subPages} baseHref={baseHref} />
+					<Listing items={subPages} />
 				}
 			</div>
 		);

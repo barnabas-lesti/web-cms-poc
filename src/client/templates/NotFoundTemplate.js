@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 export default class NotFoundTemplate extends Component {
+	static templateName = 'NotFoundTemplate';
+
 	render() {
 		return (
 			<div className="NotFoundTemplate page container">

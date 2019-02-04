@@ -1,0 +1,44 @@
+.ListItem {
+	$_defaultColor: #000000;
+	$_ctaColor: $color_link2;
+	$_ctaColor-hover: $color_link2-hover;
+	$_borderColor: rgba(5, 45, 73, .07);
+	$_gutter: 1rem;
+
+	border: 2px solid $_borderColor;
+	color: $_defaultColor;
+	display: block;
+	opacity: .8;
+	padding: $_gutter;
+	transition: opacity ease .2s;
+
+	&_cta {
+		color: $_ctaColor;
+	}
+
+	&_title {
+		font-size: 1.3rem;
+		margin: 0 0 #{ $_gutter / 2 };
+	}
+
+	&_description {
+		font-size: .9rem;
+		font-weight: 500;
+		margin: 0 0 $_gutter;
+	}
+
+	&_featuredImage {
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		box-sizing: border-box;
+		height: 10rem;
+		margin: #{ -$_gutter } #{ -$_gutter } $_gutter;
+		width: auto;
+	}
+
+	&:hover {
+		color: $_defaultColor;
+		opacity: 1;
+	}
+}

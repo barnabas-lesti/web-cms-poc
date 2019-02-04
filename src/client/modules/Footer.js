@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import urlJoin from 'url-join';
 
 export default class Footer extends Component {
 	render() {
 		const {
 			copyrightText,
 			menuItems,
-			baseHref,
 			social,
 		} = this.props;
 		return (
-			<footer className="Footer clearfix">
-				<div className="container">
+			<footer className="Footer">
+				<div className="Footer_container">
 					<ul className="Footer_links">
 						{menuItems && menuItems.map((menuItem, index) =>
 							<li key={index}>
-								<a href={urlJoin(baseHref, menuItem.path)}>{menuItem.label}</a>
+								<a href={menuItem.path}>{menuItem.label}</a>
 							</li>
 						)}
 					</ul>

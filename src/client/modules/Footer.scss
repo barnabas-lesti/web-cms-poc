@@ -1,11 +1,16 @@
 .Footer {
+	@extend %clearfix;
+
 	$_bgColor: #ffffff;
 	$_boxShadow: rgba(5, 45, 73, .07) 0 -2px 0 0;
 
 	background-color: $_bgColor;
 	box-shadow: $_boxShadow;
 	text-align: center;
-	flex-shrink: 0;
+
+	&_container {
+		@extend %container;
+	}
 
 	&_links {
 		list-style-type: none;

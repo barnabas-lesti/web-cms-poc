@@ -1,0 +1,42 @@
+.AboveTheFold {
+	$_overlayBgColor: rgba(0, 0, 0, .6);
+	$_textColor: #ffffff;
+
+	position: relative;
+
+	&_content {
+		@extend %container;
+
+		box-sizing: border-box;
+		color: $_textColor;
+		left: 50%;
+		position: absolute;
+		text-align: center;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+		z-index: 400;
+	}
+
+	&_image {
+		height: 80vh;
+		width: 100%;
+	}
+
+	&_overlay {
+		background-color: $_overlayBgColor;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 200;
+	}
+
+	@media screen and (min-width: $layout_mdMin) {
+		&_content {
+			padding: 0 10rem 0 1rem;
+			text-align: left;
+		}
+	}
+}

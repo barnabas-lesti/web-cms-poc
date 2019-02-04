@@ -1,0 +1,7 @@
+.FrontPageTemplate {
+	&_container {
+		@extend %page;
+		@extend %container;
+		@extend %cmsContent;
+	}
+}

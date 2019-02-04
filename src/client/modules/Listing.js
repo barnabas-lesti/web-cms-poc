@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 
-import PostCard from './PostCard';
+import ListItem from './ListItem';
 
 export default class Listing extends Component {
 	render() {
 		const {
 			items,
-			baseHref,
 		} = this.props;
 		return (
 			<div className="Listing">
 				{items && items.map((item, index) =>
-					<PostCard
+					<div
 						key={index}
-						description={item.description}
-						title={item.title}
-						path={item.pagePath}
-						baseHref={baseHref}
-					/>
+						className="Listing_item"
+					>
+						<ListItem
+							description={item.description}
+							title={item.title}
+							url={item.pagePath}
+							featuredImageUrl={item.featuredImageUrl}
+						/>
+					</div>
 				)}
 			</div>
 		);

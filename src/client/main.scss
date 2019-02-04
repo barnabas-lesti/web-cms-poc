@@ -1,17 +1,17 @@
-@import './styles/variables';
-@import './styles/mixins';
-@import './styles/helpers';
-@import './styles/settings';
-@import './styles/cmsContent';
-@import './styles/syntaxHighlight';
+@import './styles/variables.scss';
+@import './styles/partials.scss';
+@import './styles/mixins.scss';
+@import './styles/helpers.scss';
+@import './styles/settings.scss';
 
-@import './App';
+@import './App.scss';
 
-@import './partials/Footer';
-@import './partials/Header';
-@import './partials/Listing';
-@import './partials/PostCard';
-@import './partials/Header';
+@import './modules/AboveTheFold.scss';
+@import './modules/Footer.scss';
+@import './modules/Header.scss';
+@import './modules/Listing.scss';
+@import './modules/ListItem.scss';
 
-@import './templates/BasicTemplate';
-@import './templates/NotFoundTemplate';
+@import './templates/BasicTemplate.scss';
+@import './templates/FrontPageTemplate.scss';
+@import './templates/NotFoundTemplate.scss';
