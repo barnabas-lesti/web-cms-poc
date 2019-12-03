@@ -1,7 +1,7 @@
 {
-	"name": "eodrin-cms",
+	"name": "web-cms-poc",
 	"version": "1.0.0",
-	"description": "Eodrin CMS",
+	"description": "Simple CMS spike.",
 	"main": "./server.js",
 	"scripts": {
 		"start:dev": "nodemon --watch ./build ./build/server.js --env=development",

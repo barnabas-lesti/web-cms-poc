@@ -1,5 +1,3 @@
-# Eodrin CMS Web
+# Web CMS POC
 
-```bash
-# TODO: :)
-```
+TBC
